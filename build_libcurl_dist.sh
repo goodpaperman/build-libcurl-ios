@@ -25,7 +25,7 @@ function build_for_arch() {
   export CFLAGS="-arch ${ARCH} -pipe -Os -gdwarf-2 -isysroot ${SYSROOT} -miphoneos-version-min=${IPHONEOS_DEPLOYMENT_TARGET}"
   export LDFLAGS="-arch ${ARCH} -isysroot ${SYSROOT}"
   export SSL_FLAG="--with-ssl=${HOME}/tools/openssl-1.1.1i/build/${ARCH}/"
-  ./configure --disable-shared --without-zlib --enable-static --enable-ipv6 ${SSL_FLAG} --host="${HOST}" --prefix=${PREFIX} && make -j8 && make install
+  ./configure --disable-shared --without-zlib --without-libidn2 --enable-static --enable-ipv6 ${SSL_FLAG} --host="${HOST}" --prefix=${PREFIX} && make -j8 && make install
 }
 
 #if [ "${1:-''}" == "openssl" ]
