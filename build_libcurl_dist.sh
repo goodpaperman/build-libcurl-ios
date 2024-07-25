@@ -24,8 +24,8 @@ function build_for_arch() {
   export CPPFLAGS="-DCURL_BUILD_IOS"
   export CFLAGS="-arch ${ARCH} -pipe -Os -gdwarf-2 -isysroot ${SYSROOT} -miphoneos-version-min=${IPHONEOS_DEPLOYMENT_TARGET}"
   export LDFLAGS="-arch ${ARCH} -isysroot ${SYSROOT}"
-  export SSL_FLAG="--with-ssl=${HOME}/tools/openssl-1.1.1i/build/${ARCH}/"
-  ./configure --disable-shared --without-zlib --without-libidn2 --enable-static --enable-ipv6 ${SSL_FLAG} --host="${HOST}" --prefix=${PREFIX} && make -j8 && make install
+  # export SSL_FLAG="--with-ssl=${HOME}/tools/output-1.0.2l/lib/iOS/"
+  ./configure --disable-shared --without-zlib --without-libidn2 --without-libidn --enable-static --enable-ipv6 ${SSL_FLAG} --host="${HOST}" --prefix=${PREFIX} && make -j8 && make install
 }
 
 #if [ "${1:-''}" == "openssl" ]
@@ -38,7 +38,8 @@ function build_for_arch() {
 #  export SSL_FLAG=--with-ssl=${HOME}/Desktop/openssl-ios-dist
 #else
   check_curl_ver
-  #export SSL_FLAG=--with-darwinssl
+  # export SSL_FLAG=--with-darwinssl
+   export SSL_FLAG="--with-ssl=${HOME}/tools/openssl-1.0.2l/lib/iOS/"
 #fi
 
 TMP_DIR=/tmp/build_libcurl_$$
